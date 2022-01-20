@@ -70,6 +70,11 @@ list_iterator_t* list_iterator_new(list_t* list)
     return iterator;
 }
 
+bool list_iterator_next(list_iterator_t* iterator)
+{
+    return false;
+}
+
 size_t list_length(list_t* list)
 {
     size_t length = 0;

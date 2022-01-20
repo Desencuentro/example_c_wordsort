@@ -52,6 +52,13 @@ bool list_iterator_is_empty(list_iterator_t* iterator);
 list_iterator_t* list_iterator_new(list_t* list);
 
 /**
+ * Advances (if possible) the iterator to the next element.
+ * @param iterator An iterator created with list_iterator_new().
+ * @return If there are more elements (a.k.a. if iterator is not empty)
+ **/
+bool list_iterator_next(list_iterator_t* iterator);
+
+/**
  * Get the length of a list.
  * @param list A list or NULL.
  * @return The amount of elements in the list (or 0 if list is NULL).
