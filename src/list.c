@@ -1,6 +1,6 @@
 #include <ctype.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include "list.h"
 
 typedef struct node node_t;
@@ -28,18 +28,24 @@ struct node {
  **/
 bool valueComesAfter(const char* checking, const char* reference)
 {
-    if( (checking == reference) || (NULL == reference) ) {
+    if( (checking == reference) || (NULL == checking) ) {
         return false;
     }
+    if(NULL == reference) {
+        return true;
+    }
+    const char *checkchar = checking, *refchar = reference;
     int diff = 0;
+
     while (0 == diff) {
-        diff = tolower(*checking)-tolower(*reference);
-        if(0 == checking) {
+        diff = tolower(*checkchar)-tolower(*refchar);
+        if( (0 == *checkchar) || (0 == *refchar) ) {
             break;
         }
-        checking++;
-        reference++;
+        checkchar++;
+        refchar++;
     }
+    diff = (0 == diff) ? strcmp(checking, reference) : diff;
     return diff > 0;
 }
 
