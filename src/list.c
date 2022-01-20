@@ -29,6 +29,12 @@ errorcode_t list_add_ordered(list_t* list, char* value)
     }
     node->value = value;
     node_t** pointer = &(list->first);
+
+    while(NULL != *pointer) {
+        node_t* last = *pointer;
+        pointer = &(last->next);
+    }
+    
     *pointer = node;
     return ERROR_NONE;
 }
@@ -72,7 +78,13 @@ list_iterator_t* list_iterator_new(list_t* list)
 
 bool list_iterator_next(list_iterator_t* iterator)
 {
-    return false;
+    node_t* node = (NULL == iterator) ? NULL : iterator->current;
+    if(node) {
+        iterator->current = node->next;
+        return NULL != node->next;
+    } else {
+        return false;
+    }
 }
 
 size_t list_length(list_t* list)
