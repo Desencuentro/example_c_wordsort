@@ -147,6 +147,20 @@ void onAddOrdered1Element_listIteratorIsEmpty_isFalse()
     list_free(list);
 }
 
+void onNullIterator_listIteratorCurrent_isNull()
+{
+    assertEquals("list_iterator_current(NULL) is NULL",
+        NULL, list_iterator_current(NULL));
+}
+
+void onEmptyIterator_listIteratorCurrent_isNull()
+{
+    list_iterator_t* empty_iterator = list_iterator_new(NULL);
+    assertEquals("list_iterator_current(empty_iterator) is NULL",
+        NULL, list_iterator_current(empty_iterator));
+    list_iterator_free(empty_iterator);
+}
+
 void list_tests()
 {
     printf("\n\n");
@@ -167,4 +181,6 @@ void list_tests()
     onListNull_listIteratorIsEmpty_isTrue();
     onEmptyList_listIteratorIsEmpty_isTrue();
     onAddOrdered1Element_listIteratorIsEmpty_isFalse();
+    onNullIterator_listIteratorCurrent_isNull();
+    onEmptyIterator_listIteratorCurrent_isNull();
 }
