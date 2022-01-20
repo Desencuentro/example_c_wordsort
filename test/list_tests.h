@@ -11,7 +11,11 @@ void onListNull_listAddOrdered_isErrorArgs();
 void onEmptyListNullValue_listAddOrdered_isErrorArgs();
 void onListNullNullValue_listAddOrdered_isErrorArgs();
 void onAddOrdered1Element_listLength_is1();
-void onIteratorNUll_listIteratorFree_doNotCrash();
+void onIteratorNull_listIteratorFree_doNotCrash();
 void onListNull_listIteratorNew_isNotNull();
+void onIteratorNull_listIteratorIsEmpty_isTrue();
+void onListNull_listIteratorIsEmpty_isTrue();
+void onEmptyList_listIteratorIsEmpty_isTrue();
+void onAddOrdered1Element_listIteratorIsEmpty_isFalse();
 
 #endif
