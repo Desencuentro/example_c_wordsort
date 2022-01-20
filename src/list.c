@@ -8,6 +8,10 @@ struct list {
     node_t* first;
 };
 
+struct list_iterator {
+    node_t* current;
+};
+
 struct node {
     node_t* next;
     char* value;
@@ -29,11 +33,6 @@ errorcode_t list_add_ordered(list_t* list, char* value)
     return ERROR_NONE;
 }
 
-list_t* list_new()
-{
-    return calloc(1,sizeof(list_t));
-}
-
 void list_free(list_t* list)
 {
     if(NULL == list) {
@@ -49,7 +48,24 @@ void list_free(list_t* list)
     free(list);
 }
 
+void list_iterator_free(list_iterator_t* iterator)
+{
+    free(iterator);
+}
+
+list_iterator_t* list_iterator_new(list_t* list)
+{
+    list_iterator_t* iterator = calloc(1, sizeof(list_iterator_t*));
+    return iterator;
+}
+
 size_t list_length(list_t* list)
 {
     return 0;
 }
+
+list_t* list_new()
+{
+    return calloc(1,sizeof(list_t));
+}
+

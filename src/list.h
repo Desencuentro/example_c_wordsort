@@ -4,7 +4,7 @@
 #include "errors.h"
 
 typedef struct list list_t;
-//typedef int errorcode_t;
+typedef struct list_iterator list_iterator_t;
 
 /**
  * Add the given value to the list, while keeping the ordering criteria,
@@ -22,6 +22,19 @@ errorcode_t list_add_ordered(list_t* list, char* value);
  * @param list A non-null non-freed linked list.
  **/
 void list_free(list_t* list);
+
+/**
+ * Frees a linked list iterator.
+ * @param iterator A non-null non-freed iterator created with list_iterator_new.
+ **/
+void list_iterator_free(list_iterator_t* iterator);
+
+/**
+ * Allocates a new iterator for the given list.
+ * @param list A list to iterate, must not be modified while operating iterator.
+ * @return NULL if not memory, a newly allocated iterator pointer otherwise.
+ **/
+list_iterator_t* list_iterator_new(list_t* list);
 
 /**
  * Get the length of a list.
