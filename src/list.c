@@ -17,6 +17,11 @@ struct node {
     char* value;
 };
 
+bool valueComesAfter(const char* before, const char* after)
+{
+    return true;
+}
+
 errorcode_t list_add_ordered(list_t* list, char* value)
 {
     if( (NULL == list) || (NULL == value) ) {
@@ -30,11 +35,12 @@ errorcode_t list_add_ordered(list_t* list, char* value)
     node->value = value;
     node_t** pointer = &(list->first);
 
-    while(NULL != *pointer) {
+    while( (NULL != *pointer) && (valueComesAfter(value, (*pointer)->value)) ) {
         node_t* last = *pointer;
         pointer = &(last->next);
     }
 
+    node->next = *pointer;
     *pointer = node;
     return ERROR_NONE;
 }
