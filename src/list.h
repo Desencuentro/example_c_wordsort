@@ -1,8 +1,21 @@
 #ifndef __LIST_H__
 #define __LIST_H__
 #include <stddef.h>
+#include "errors.h"
 
 typedef struct list list_t;
+//typedef int errorcode_t;
+
+/**
+ * Add the given value to the list, while keeping the ordering criteria,
+ * which is latin alphabetical like strcmp but case-insensitve.
+ * @param list A non-null list, empty or with the same criteria.
+ *             On success, this value will be freed whithin the list;
+ *             otherwise, the user must free it on error.
+ * @param value The new given non-null value (repeated elements are allowed).
+ * @return An errorcode_t which is ERROR_NONE on success.
+ **/
+errorcode_t list_add_ordered(list_t* list, char* value);
 
 /**
  * Frees a list.
