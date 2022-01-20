@@ -35,7 +35,16 @@ bool is_valid_read(int readed)
 
 list_t* sortfile_readfile(FILE* input, errorcode_t *result)
 {
-    return NULL;
+    errorcode_t error = ERROR_NONE;
+    list_t* list = NULL;
+    if(NULL == input) {
+        error = ERROR_ARGS;
+    } 
+
+    if(NULL != result) {
+        (*result) = error;
+    }
+    return list;
 }
 
 char* sortfile_readword(FILE* input, errorcode_t *result)
