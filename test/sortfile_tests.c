@@ -141,6 +141,66 @@ void onEmptyLineFile_sortfileReadfile_isEmptyList_andErrorIsNone()
     fclose(f);
 }
 
+void onWordFile_sortfileReadfile_hasWord_andErrorIsNone()
+{
+    errorcode_t error = ERROR_UNKNOWN;
+    FILE *f = fopen("test/testfiles/wordNoLine.txt", "r");
+
+    list_t* list = sortfile_readfile(f, &error);
+
+    assertNotEquals("On read word file, list is not NULL",
+        NULL, list);
+    assertEquals("On read word file, length is 1",
+        1, list_length(list));
+    assertEquals("On read word file, error is ERROR_NONE",
+        ERROR_NONE, error);
+    
+    list_iterator_t* iter = list_iterator_new(list);
+    char* word = list_iterator_current(iter);
+    int cmp = (NULL == word) ? 0x1988 : strcmp(word,"word");
+
+    assertNotEquals("On read word file, iterator is not NULL",
+        NULL, iter);
+    assertNotEquals("On read word file, iterator current is not NULL",
+        NULL, word);
+    assertEquals("On read word file, first word is equal to word",
+        0, cmp);
+
+    list_iterator_free(iter);
+    list_free(list);
+    fclose(f);
+}
+
+void onWordLineFile_sortfileReadfile_hasWord_andErrorIsNone()
+{
+    errorcode_t error = ERROR_UNKNOWN;
+    FILE *f = fopen("test/testfiles/wordLine.txt", "r");
+
+    list_t* list = sortfile_readfile(f, &error);
+
+    assertNotEquals("On read word line file, list is not NULL",
+        NULL, list);
+    assertEquals("On read word line file, length is 1",
+        1, list_length(list));
+    assertEquals("On read word line file, error is ERROR_NONE",
+        ERROR_NONE, error);
+    
+    list_iterator_t* iter = list_iterator_new(list);
+    char* word = list_iterator_current(iter);
+    int cmp = (NULL == word) ? 0x1988 : strcmp(word,"word");
+
+    assertNotEquals("On read word line file, iterator is not NULL",
+        NULL, iter);
+    assertNotEquals("On read word line file, iterator current is not NULL",
+        NULL, word);
+    assertEquals("On read word line file, first word is equal to word",
+        0, cmp);
+
+    list_iterator_free(iter);
+    list_free(list);
+    fclose(f);
+}
+
 void sortfile_tests()
 {
     printf("\n\n");
@@ -156,4 +216,6 @@ void sortfile_tests()
     onNullFile_sortfileReadfile_isNull_andErrorIsArgs();
     onEmptyFile_sortfileReadfile_isEmptyList_andErrorIsNone();
     onEmptyLineFile_sortfileReadfile_isEmptyList_andErrorIsNone();
+    onWordFile_sortfileReadfile_hasWord_andErrorIsNone();
+    onWordLineFile_sortfileReadfile_hasWord_andErrorIsNone();
 }
