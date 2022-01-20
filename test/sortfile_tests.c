@@ -123,6 +123,24 @@ void onEmptyFile_sortfileReadfile_isEmptyList_andErrorIsNone()
     fclose(f);
 }
 
+void onEmptyLineFile_sortfileReadfile_isEmptyList_andErrorIsNone()
+{
+    errorcode_t error = ERROR_UNKNOWN;
+    FILE *f = fopen("test/testfiles/emptyLine.txt", "r");
+
+    list_t* list = sortfile_readfile(f, &error);
+
+    assertNotEquals("On read empty line file, list is not NULL",
+        NULL, list);
+    assertEquals("On read empty line file, length is 0",
+        0, list_length(list));
+    assertEquals("On read empty line file, error is ERROR_NONE",
+        ERROR_NONE, error);
+    
+    list_free(list);
+    fclose(f);
+}
+
 void sortfile_tests()
 {
     printf("\n\n");
@@ -137,4 +155,5 @@ void sortfile_tests()
     onWordLineFile_2sortfileReadword_isWordNull_andErrorIsNone();
     onNullFile_sortfileReadfile_isNull_andErrorIsArgs();
     onEmptyFile_sortfileReadfile_isEmptyList_andErrorIsNone();
+    onEmptyLineFile_sortfileReadfile_isEmptyList_andErrorIsNone();
 }
