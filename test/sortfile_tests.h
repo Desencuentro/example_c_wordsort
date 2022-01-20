@@ -3,4 +3,6 @@
 
 void sortfile_tests();
 
+void onNullFile_sortfileReadword_isNull_andErrorIsArgs();
+
 #endif
