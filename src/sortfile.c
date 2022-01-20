@@ -35,12 +35,29 @@ bool is_valid_read(int readed)
 
 list_t* sortfile_readfile(FILE* input, errorcode_t *result)
 {
+    char EMPTY[2] = "";
     errorcode_t error = ERROR_NONE;
     list_t* list = NULL;
     if(NULL == input) {
         error = ERROR_ARGS;
     } else {
         list = list_new();
+        if(NULL == list) {
+            error = ERROR_MEMORY;
+        }
+    }
+
+    char* word = EMPTY;
+    while( (NULL != word) && (ERROR_NONE == error) ) {
+        word = sortfile_readword(input, &error);
+        if(NULL != word) {
+            error = list_add_ordered(list, word);
+        }
+        
+        if(ERROR_NONE != error) {
+            free(list);
+            list = NULL;
+        }
     }
 
     if(NULL != result) {
