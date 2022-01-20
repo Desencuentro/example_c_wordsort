@@ -8,5 +8,6 @@ void onEmptyFile_sortfileReadword_isNull_andErrorIsNone();
 void onEmptyLineFile_sortfileReadword_isNull_andErrorIsNone();
 void onWordFile_sortfileReadword_isWord_andErrorIsNone();
 void onWordLineFile_2sortfileReadword_isWordNull_andErrorIsNone();
+void onNullFile_sortfileReadfile_isNull_andErrorIsArgs();
 
 #endif

@@ -94,6 +94,17 @@ void onWordLineFile_2sortfileReadword_isWordNull_andErrorIsNone()
     fclose(f);
 }
 
+void onNullFile_sortfileReadfile_isNull_andErrorIsArgs()
+{
+    errorcode_t error = ERROR_UNKNOWN;
+    list_t* list = sortfile_readfile(NULL, &error);
+    assertEquals("sortfile_readfile(NULL,&error) is NULL",
+        NULL, list);
+    assertEquals("On sortfile_readfile(NULL,&error), error is ERROR_ARGS",
+        ERROR_ARGS, error);
+    list_free(list);
+}
+
 void sortfile_tests()
 {
     printf("\n\n");
@@ -106,4 +117,5 @@ void sortfile_tests()
     onEmptyLineFile_sortfileReadword_isNull_andErrorIsNone();
     onWordFile_sortfileReadword_isWord_andErrorIsNone();
     onWordLineFile_2sortfileReadword_isWordNull_andErrorIsNone();
+    onNullFile_sortfileReadfile_isNull_andErrorIsArgs();
 }
