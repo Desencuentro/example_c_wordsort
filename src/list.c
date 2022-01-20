@@ -61,7 +61,13 @@ list_iterator_t* list_iterator_new(list_t* list)
 
 size_t list_length(list_t* list)
 {
-    return 0;
+    size_t length = 0;
+    node_t* node = (NULL == list) ? NULL : list->first;
+    while(NULL != node) {
+        length++;
+        node = node->next;
+    }
+    return length;
 }
 
 list_t* list_new()
