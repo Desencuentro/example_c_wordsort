@@ -48,6 +48,11 @@ void list_free(list_t* list)
     free(list);
 }
 
+char* list_iterator_current(list_iterator_t* iterator)
+{
+    return NULL;
+}
+
 void list_iterator_free(list_iterator_t* iterator)
 {
     free(iterator);

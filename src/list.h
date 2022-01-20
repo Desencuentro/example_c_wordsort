@@ -25,6 +25,13 @@ errorcode_t list_add_ordered(list_t* list, char* value);
 void list_free(list_t* list);
 
 /**
+ * Returns the current element of the iterator.
+ * @param An iterator.
+ * @return The current value at the iterator, or NULL.
+ **/
+char* list_iterator_current(list_iterator_t* iterator);
+
+/**
  * Frees a linked list iterator.
  * @param iterator A non-null non-freed iterator created with list_iterator_new.
  **/
