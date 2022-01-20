@@ -139,10 +139,10 @@ void onEmptyList_listIteratorIsEmpty_isTrue()
 void onAddOrdered1Element_listIteratorIsEmpty_isFalse()
 {
     list_t* list = list_new();
-    list_iterator_t* iter = list_iterator_new(list);
     list_add_ordered(list, alloc_text("1 element"));
-    assertEquals("onAddOrdered1Element_listIteratorIsEmpty_isFalse",
-        true, list_iterator_is_empty(iter));
+    list_iterator_t* iter = list_iterator_new(list);
+    assertEquals("On list with 1 element, list_iterator_is_empty is false",
+        false, list_iterator_is_empty(iter));
     list_iterator_free(iter);
     list_free(list);
 }
