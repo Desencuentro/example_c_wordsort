@@ -53,6 +53,11 @@ void list_iterator_free(list_iterator_t* iterator)
     free(iterator);
 }
 
+bool list_iterator_is_empty(list_iterator_t* iterator)
+{
+    return true;
+}
+
 list_iterator_t* list_iterator_new(list_t* list)
 {
     list_iterator_t* iterator = calloc(1, sizeof(list_iterator_t*));

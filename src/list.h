@@ -1,5 +1,6 @@
 #ifndef __LIST_H__
 #define __LIST_H__
+#include <stdbool.h>
 #include <stddef.h>
 #include "errors.h"
 
@@ -28,6 +29,13 @@ void list_free(list_t* list);
  * @param iterator A non-null non-freed iterator created with list_iterator_new.
  **/
 void list_iterator_free(list_iterator_t* iterator);
+
+/**
+ * Indicates if iterator current value is valid.
+ * @param iterator An iterator created with list_iterator_new().
+ * @return If iterator is null or there is not a current value,
+ **/
+bool list_iterator_is_empty(list_iterator_t* iterator);
 
 /**
  * Allocates a new iterator for the given list.
