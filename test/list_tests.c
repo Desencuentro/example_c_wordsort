@@ -223,6 +223,37 @@ void onListOf3Elements_listLength_is3()
     list_free(list);
 }
 
+void iteratingListOf_a_L_Z_5listIteratorCurrent_are_a_L_Z_2NULL()
+{
+    char *a = alloc_text("a");
+    char *L = alloc_text("L");
+    char *Z = alloc_text("Z");
+    list_t* list = list_new();
+    list_add_ordered(list, a);
+    list_add_ordered(list, L);
+    list_add_ordered(list, Z);
+
+    list_iterator_t* iter = list_iterator_new(list);
+
+    assertEquals("On list with a, L, Z, list_iterator_current is a 1º time",
+        a, list_iterator_current(iter));
+    list_iterator_next(iter);
+    assertEquals("On list with a, L, Z, calling list_iterator_next once, list_iterator_current is L",
+        L, list_iterator_current(iter));
+    list_iterator_next(iter);
+    assertEquals("On list with a, L, Z, calling list_iterator_next twice, list_iterator_current is Z",
+        Z, list_iterator_current(iter));
+    list_iterator_next(iter);
+    assertEquals("On list with a, L, Z, list_iterator_next 3 times, list_iterator_current is NULL",
+        NULL, list_iterator_current(iter));
+    list_iterator_next(iter);
+    assertEquals("On list with a, L, Z, list_iterator_next 4 times, list_iterator_current is NULL",
+        NULL, list_iterator_current(iter));
+
+    list_iterator_free(iter);
+    list_free(list);
+}
+
 void list_tests()
 {
     printf("\n\n");
@@ -250,4 +281,5 @@ void list_tests()
     onIteratorOf1Element_3listIteratorNext_isAlwaysFalse();
     onIteratorOf2Element_3listIteratorNext_isTrueFalseFalse();
     onListOf3Elements_listLength_is3();
+    iteratingListOf_a_L_Z_5listIteratorCurrent_are_a_L_Z_2NULL();
 }
