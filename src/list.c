@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdlib.h>
 
 #include "list.h"
@@ -17,9 +18,21 @@ struct node {
     char* value;
 };
 
-bool valueComesAfter(const char* before, const char* after)
+bool valueComesAfter(const char* checking, const char* reference)
 {
-    return true;
+    if( (checking == reference) || (NULL == reference) ) {
+        return false;
+    }
+    int diff = 0;
+    while (0 == diff) {
+        diff = tolower(*checking)-tolower(*reference);
+        if(0 == checking) {
+            break;
+        }
+        checking++;
+        reference++;
+    }
+    return diff > 0;
 }
 
 errorcode_t list_add_ordered(list_t* list, char* value)
