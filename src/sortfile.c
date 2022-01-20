@@ -50,6 +50,7 @@ list_t* sortfile_readfile(FILE* input, errorcode_t *result)
     char* word = EMPTY;
     while( (NULL != word) && (ERROR_NONE == error) ) {
         word = sortfile_readword(input, &error);
+
         if(NULL != word) {
             error = list_add_ordered(list, word);
         }
@@ -76,9 +77,11 @@ char* sortfile_readword(FILE* input, errorcode_t *result)
         error = ERROR_ARGS;
     } 
 
-    while((ERROR_NONE == error) && !feof(input) && !ferror(input)) {
+    bool started = false, finished = false;
+    while(!finished && (ERROR_NONE == error) && !feof(input) && !ferror(input)) {
         int read = fgetc(input);
         if(is_valid_read(read)) {
+            started = true;
             char* newword = word_putc(word, (char) read, &len);
             if(NULL != newword) {
                 word = newword;
@@ -87,6 +90,8 @@ char* sortfile_readword(FILE* input, errorcode_t *result)
                 free(word);
                 word = NULL;
             }
+        } else if(started) {
+            finished = true;
         }
     }
 
