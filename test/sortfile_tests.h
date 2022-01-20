@@ -17,5 +17,6 @@ void onWordFile_sortfileReadfile_hasWord_andErrorIsNone();
 void onWordLineFile_sortfileReadfile_hasWord_andErrorIsNone();
 void on2wordsFile_sortfileReadfile_hasTwo_Words_andErrorIsNone();
 void on2linesFile_sortfileReadfile_has2_lines_andErrorIsNone();
+void onMediumInput_sortfileReadfile_matches_mediumOutput();
 
 #endif

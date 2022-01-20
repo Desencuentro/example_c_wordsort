@@ -343,6 +343,64 @@ void on2linesFile_sortfileReadfile_has2_lines_andErrorIsNone()
     fclose(f);
 }
 
+void onMediumInput_sortfileReadfile_matches_mediumOutput()
+{
+    FILE *input_file = fopen("test/testfiles/medium_input.txt", "r");
+    list_t* input = sortfile_readfile(input_file, NULL);
+    fclose(input_file);
+
+    FILE *output_file = fopen("test/testfiles/medium_output.txt", "r");
+    list_t* output = sortfile_readfile(output_file, NULL);
+    fclose(output_file);
+
+    size_t len_in = list_length(input);
+    size_t len_out = list_length(output);
+
+    assertEquals("On medium input, length of list equals medium output",
+        len_in, len_out);
+    
+    len_in = (len_in < len_out) ? len_in : len_out;
+    len_in = (len_in < 50) ? len_in : 50;
+    
+    list_iterator_t* iter_in = list_iterator_new(input);
+    list_iterator_t* iter_out = list_iterator_new(output);
+    
+    int matches = 0;
+    char* word_in = NULL;
+    char* word_out = NULL;
+    for(int i = 0; i<len_in; i++) {
+        word_in = list_iterator_current(iter_in);
+        list_iterator_next(iter_in);
+        word_out = list_iterator_current(iter_out);
+        list_iterator_next(iter_out);
+
+        int cmp = strcmp(word_in, word_out);
+        if(0 == cmp) {
+            matches++;
+        } else {
+            printf("On medium input, %i ",matches);
+            smalltests_do_start_test("first words matched output");
+            if(matches>0) {
+                smalltests_do_pass();
+            }
+            break;
+        }
+    }
+
+    smalltests_do_start_test("On medium input, all words match output");
+    if ( 0 == strcmp(word_in, word_out) ) {
+        smalltests_do_pass();
+    } else {
+        printf("FAILED, read '%s', expected '%s'\n",word_in, word_out);
+    }
+
+    free(iter_in);
+    free(iter_out);
+
+    list_free(input);
+    list_free(output);
+}
+
 void sortfile_tests()
 {
     printf("\n\n");
@@ -364,4 +422,5 @@ void sortfile_tests()
     onWordLineFile_sortfileReadfile_hasWord_andErrorIsNone();
     on2wordsFile_sortfileReadfile_hasTwo_Words_andErrorIsNone();
     on2linesFile_sortfileReadfile_has2_lines_andErrorIsNone();
+    onMediumInput_sortfileReadfile_matches_mediumOutput();
 }
