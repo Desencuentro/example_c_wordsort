@@ -8,10 +8,14 @@ void onEmptyFile_sortfileReadword_isNull_andErrorIsNone();
 void onEmptyLineFile_sortfileReadword_isNull_andErrorIsNone();
 void onWordFile_sortfileReadword_isWord_andErrorIsNone();
 void onWordLineFile_2sortfileReadword_isWordNull_andErrorIsNone();
+void on2wordsFile_2sortfileReadword_isTwo_Words_andErrorIsNone();
+void on2linesFile_3sortfileReadword_is2_lines_NULL_andErrorIsNone();
 void onNullFile_sortfileReadfile_isNull_andErrorIsArgs();
 void onEmptyFile_sortfileReadfile_isEmptyList_andErrorIsNone();
 void onEmptyLineFile_sortfileReadfile_isEmptyList_andErrorIsNone();
 void onWordFile_sortfileReadfile_hasWord_andErrorIsNone();
 void onWordLineFile_sortfileReadfile_hasWord_andErrorIsNone();
+void on2wordsFile_sortfileReadfile_hasTwo_Words_andErrorIsNone();
+void on2linesFile_sortfileReadfile_has2_lines_andErrorIsNone();
 
 #endif
