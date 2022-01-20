@@ -19,5 +19,6 @@ void onEmptyList_listIteratorIsEmpty_isTrue();
 void onAddOrdered1Element_listIteratorIsEmpty_isFalse();
 void onNullIterator_listIteratorCurrent_isNull();
 void onEmptyIterator_listIteratorCurrent_isNull();
+void onNullIterator_listIteratorNext_isFalse();
 
 #endif
