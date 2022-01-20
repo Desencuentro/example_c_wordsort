@@ -53,3 +53,5 @@ dkms.conf
 
 # IDE configuration files
 .vscode/
+
+test/testfiles/small*
