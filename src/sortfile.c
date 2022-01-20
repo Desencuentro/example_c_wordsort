@@ -33,6 +33,11 @@ bool is_valid_read(int readed)
     return (readed > 32) && (EOF != readed);
 }
 
+list_t* sortfile_readfile(FILE* input, errorcode_t *result)
+{
+    return NULL;
+}
+
 char* sortfile_readword(FILE* input, errorcode_t *result)
 {
     errorcode_t error = ERROR_NONE;
