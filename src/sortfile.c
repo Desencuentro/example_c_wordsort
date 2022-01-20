@@ -39,7 +39,9 @@ list_t* sortfile_readfile(FILE* input, errorcode_t *result)
     list_t* list = NULL;
     if(NULL == input) {
         error = ERROR_ARGS;
-    } 
+    } else {
+        list = list_new();
+    }
 
     if(NULL != result) {
         (*result) = error;
