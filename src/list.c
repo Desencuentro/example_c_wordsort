@@ -18,6 +18,14 @@ struct node {
     char* value;
 };
 
+/**
+ * Check if the `checking` value comes after `reference`, using an
+ * alphabetical ordering similar to strcmp but case-insensitive and
+ * NULL comes first.
+ * @param checking Value to check if comes after.
+ * @param reference Value of reference to compare.
+ * @return True if `checking`comes after `reference`, false otherwise.
+ **/
 bool valueComesAfter(const char* checking, const char* reference)
 {
     if( (checking == reference) || (NULL == reference) ) {
