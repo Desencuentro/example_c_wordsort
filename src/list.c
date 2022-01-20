@@ -22,3 +22,8 @@ void list_free(list_t* list)
 {
     free(list);
 }
+
+size_t list_length(list_t* list)
+{
+    return 0;
+}
