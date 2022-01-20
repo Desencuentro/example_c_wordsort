@@ -20,5 +20,8 @@ void onAddOrdered1Element_listIteratorIsEmpty_isFalse();
 void onNullIterator_listIteratorCurrent_isNull();
 void onEmptyIterator_listIteratorCurrent_isNull();
 void onNullIterator_listIteratorNext_isFalse();
+void onEmptyIterator_listIteratorNext_isFalse();
+void onIteratorOf1Element_3listIteratorNext_isAlwaysFalse();
+void onIteratorOf2Element_3listIteratorNext_isTrueFalseFalse();
 
 #endif

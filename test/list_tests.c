@@ -167,6 +167,49 @@ void onNullIterator_listIteratorNext_isFalse()
         false, list_iterator_next(NULL));
 }
 
+void onEmptyIterator_listIteratorNext_isFalse()
+{
+    list_iterator_t* iter = list_iterator_new(NULL);
+    assertEquals("On empty iterator, list_iterator_next is false",
+        false, list_iterator_next(iter));
+    list_iterator_free(iter);
+}
+
+void onIteratorOf1Element_3listIteratorNext_isAlwaysFalse()
+{
+    list_t* list = list_new();
+    list_add_ordered(list, alloc_text("1 element"));
+    list_iterator_t* iter = list_iterator_new(list);
+
+    assertEquals("On list with 1 element, list_iterator_next is false 1º time",
+        false, list_iterator_next(iter));
+    assertEquals("On list with 1 element, list_iterator_next is false 2º time",
+        false, list_iterator_next(iter));
+    assertEquals("On list with 1 element, list_iterator_next is false 3º time",
+        false, list_iterator_next(iter));
+
+    list_iterator_free(iter);
+    list_free(list);
+}
+
+void onIteratorOf2Element_3listIteratorNext_isTrueFalseFalse()
+{
+    list_t* list = list_new();
+    list_add_ordered(list, alloc_text("element 1"));
+    list_add_ordered(list, alloc_text("element 2"));
+    list_iterator_t* iter = list_iterator_new(list);
+
+    assertEquals("On list with 1 element, list_iterator_next is true 1º time",
+        true, list_iterator_next(iter));
+    assertEquals("On list with 1 element, list_iterator_next is false 2º time",
+        false, list_iterator_next(iter));
+    assertEquals("On list with 1 element, list_iterator_next is false 3º time",
+        false, list_iterator_next(iter));
+
+    list_iterator_free(iter);
+    list_free(list);
+}
+
 void list_tests()
 {
     printf("\n\n");
@@ -190,4 +233,7 @@ void list_tests()
     onNullIterator_listIteratorCurrent_isNull();
     onEmptyIterator_listIteratorCurrent_isNull();
     onNullIterator_listIteratorNext_isFalse();
+    onEmptyIterator_listIteratorNext_isFalse();
+    onIteratorOf1Element_3listIteratorNext_isAlwaysFalse();
+    onIteratorOf2Element_3listIteratorNext_isTrueFalseFalse();
 }
