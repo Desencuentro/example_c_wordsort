@@ -7,5 +7,6 @@ extern const errorcode_t ERROR_UNKNOWN;
 extern const errorcode_t ERROR_NONE;
 extern const errorcode_t ERROR_ARGS;
 extern const errorcode_t ERROR_MEMORY;
+extern const errorcode_t ERROR_FILE;
 
 #endif

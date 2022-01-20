@@ -7,6 +7,17 @@
 #include "list.h"
 
 /**
+ * Open a file given by arg; unless it's NULL, empty, or "-",
+ * in which case returns default file.
+ * @param arg Value received by argument, ideally a filename.
+ * @param modes Modes to open the filename, if not is defualt.
+ * @param default_file Value to return if arg is NULL, empty or "-".
+ * @return A file descriptor pointer, or NULL if fopen returns NULL.
+ *         The user must close the file with fclose();
+ **/
+FILE* sortfile_openarg(char* arg, char* modes, FILE* default_file);
+
+/**
  * Reads a file, word by word, and returns a linked list alphabetically sorted.
  * The criteria for sorting is the same as list_add_ordeded().
  * @param input A file with read access, to read from.
