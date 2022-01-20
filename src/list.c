@@ -34,7 +34,7 @@ errorcode_t list_add_ordered(list_t* list, char* value)
         node_t* last = *pointer;
         pointer = &(last->next);
     }
-    
+
     *pointer = node;
     return ERROR_NONE;
 }
@@ -56,7 +56,8 @@ void list_free(list_t* list)
 
 char* list_iterator_current(list_iterator_t* iterator)
 {
-    return NULL;
+    node_t* node = (NULL == iterator) ? NULL : iterator->current;
+    return (NULL == node) ? NULL : node->value;
 }
 
 void list_iterator_free(list_iterator_t* iterator)
