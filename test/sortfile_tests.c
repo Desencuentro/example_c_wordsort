@@ -67,6 +67,33 @@ void onWordFile_sortfileReadword_isWord_andErrorIsNone()
     fclose(f);
 }
 
+void onWordLineFile_2sortfileReadword_isWordNull_andErrorIsNone()
+{
+    FILE *f = fopen("test/testfiles/wordNoLine.txt", "r");
+    errorcode_t error = ERROR_UNKNOWN;
+
+    char* word = sortfile_readword(f, &error);
+
+    assertNotEquals("On file with word and linebreak, sortfile_readword returns not NULL.",
+        NULL, word);
+    int cmp = (NULL == word) ? 0x1987 : strcmp("word", word);
+    assertEquals("On file with word and linebreak, strcmp sortfile_readword with word is 0.",
+        0, cmp);
+    assertEquals("On file with word and linebreak, sortfile_readword error is ERROR_NONE.",
+        ERROR_NONE, error);
+    free(word);
+
+    error = ERROR_UNKNOWN;
+    word = sortfile_readword(f, &error);
+    assertEquals("On file with word and linebreak, sortfile_readword twice returns NULL.",
+        NULL, word);
+    assertEquals("On file with word and linebreak, sortfile_readword twice, error is ERROR_NONE.",
+        ERROR_NONE, error);
+    free(word);
+
+    fclose(f);
+}
+
 void sortfile_tests()
 {
     printf("\n\n");
@@ -78,4 +105,5 @@ void sortfile_tests()
     onEmptyFile_sortfileReadword_isNull_andErrorIsNone();
     onEmptyLineFile_sortfileReadword_isNull_andErrorIsNone();
     onWordFile_sortfileReadword_isWord_andErrorIsNone();
+    onWordLineFile_2sortfileReadword_isWordNull_andErrorIsNone();
 }
