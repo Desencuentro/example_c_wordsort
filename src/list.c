@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "list.h"
 
 typedef struct node node_t;
@@ -13,9 +15,10 @@ struct node {
 
 list_t* list_new()
 {
-    return NULL;
+    return calloc(1,sizeof(list_t));
 }
 
 void list_free(list_t* list)
 {
+    free(list);
 }
