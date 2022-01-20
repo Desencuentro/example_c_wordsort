@@ -1,6 +1,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 #include "sortfile.h"
+
+const char* const ARG_DEFAULT_FILE = "-";
 
 /**
  * Put a char at end of word, reallocating if necessary.
@@ -31,6 +34,14 @@ char* word_putc(char* word, char newchar, size_t* pLen)
 bool is_valid_read(int readed)
 {
     return (readed > 32) && (EOF != readed);
+}
+
+FILE* sortfile_openarg(char* arg, char* modes, FILE* default_file)
+{
+    if( (NULL == arg) || (0 == arg[0]) || (0 == strcmp(ARG_DEFAULT_FILE, arg)) ) {
+        return default_file;
+    }
+    return fopen(arg,modes);
 }
 
 list_t* sortfile_readfile(FILE* input, errorcode_t *result)
