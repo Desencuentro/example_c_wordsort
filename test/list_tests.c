@@ -98,6 +98,20 @@ void onAddOrdered1Element_listLength_is1()
     list_free(list);
 }
 
+void onIteratorNUll_listIteratorFree_doNotCrash()
+{
+    smalltests_do_start_test("list_iterator_free(NULL) do not crash");
+    list_iterator_free(NULL);
+    smalltests_do_pass();
+}
+
+void onListNull_listIteratorNew_isNotNull()
+{
+    list_iterator_t* iter = list_iterator_new(NULL);
+    assertNotEquals("list_iterator_new(NULL) is not NULL", NULL, iter);
+    list_iterator_free(iter);
+}
+
 void list_tests()
 {
     printf("\n\n");
@@ -112,4 +126,6 @@ void list_tests()
     onEmptyListNullValue_listAddOrdered_isErrorArgs();
     onListNullNullValue_listAddOrdered_isErrorArgs();
     onAddOrdered1Element_listLength_is1();
+    onIteratorNUll_listIteratorFree_doNotCrash();
+    onListNull_listIteratorNew_isNotNull();
 }
