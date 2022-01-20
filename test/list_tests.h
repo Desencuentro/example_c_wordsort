@@ -23,5 +23,6 @@ void onNullIterator_listIteratorNext_isFalse();
 void onEmptyIterator_listIteratorNext_isFalse();
 void onIteratorOf1Element_3listIteratorNext_isAlwaysFalse();
 void onIteratorOf2Element_3listIteratorNext_isTrueFalseFalse();
+void onListOf3Elements_listLength_is3();
 
 #endif

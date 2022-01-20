@@ -210,6 +210,19 @@ void onIteratorOf2Element_3listIteratorNext_isTrueFalseFalse()
     list_free(list);
 }
 
+void onListOf3Elements_listLength_is3()
+{
+    list_t* list = list_new();
+    list_add_ordered(list, alloc_text("element 1"));
+    list_add_ordered(list, alloc_text("element 2"));
+    list_add_ordered(list, alloc_text("element 3"));
+
+    size_t len = list_length(list);
+    assertEquals("On list with 3 elements, list_length() is 3", 3, len);
+
+    list_free(list);
+}
+
 void list_tests()
 {
     printf("\n\n");
@@ -236,4 +249,5 @@ void list_tests()
     onEmptyIterator_listIteratorNext_isFalse();
     onIteratorOf1Element_3listIteratorNext_isAlwaysFalse();
     onIteratorOf2Element_3listIteratorNext_isTrueFalseFalse();
+    onListOf3Elements_listLength_is3();
 }
