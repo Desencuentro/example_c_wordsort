@@ -25,5 +25,6 @@ void onIteratorOf1Element_3listIteratorNext_isAlwaysFalse();
 void onIteratorOf2Element_3listIteratorNext_isTrueFalseFalse();
 void onListOf3Elements_listLength_is3();
 void iteratingListOf_a_L_Z_5listIteratorCurrent_are_a_L_Z_2NULL();
+void iteratingListOf_Z_b_L_5listIteratorCurrent_are_a_L_Z_2NULL();
 
 #endif
